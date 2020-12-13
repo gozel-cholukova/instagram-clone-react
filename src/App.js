@@ -1,30 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Post from './Post';
+import { db } from './firebase';
 
 function App() {
-  const [posts, setPosts] = useState ([
-    {
-      username: "gozel_usa2018",
-      caption: "WOW it works.",
-      imageUrl: "https://images.unsplash.com/photo-1545622783-b3e021430fee?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=748&q=80",
-    },
-    {
-      username: "muradusa_2017",
-      caption: "Merry Christmas Wifey!",
-      imageUrl: "https://images.unsplash.com/photo-1545622783-b3e021430fee?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=748&q=80",
-    },
-    {
-      username: "sebisha_usa_2018",
-      caption: "Mommy...",
-      imageUrl: "https://images.unsplash.com/photo-1545622783-b3e021430fee?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=748&q=80",
-    }
-  ]);
+  const [posts, setPosts] = useState ([]);
+
+  // useEffect -> Runs a piece of code based on a specific condition
+
+  useEffect(() => {
+    //this is where the code runs
+    db.collection('posts').onSnapshot(snapshot => {
+      //every time a new post is added, this code runs..
+      setPosts(snapshot.docs.map(doc => doc.data()));
+    })
+  }, []);
 
   return (
     <div className="App">
       <div className="app__header">
-        <img className="app__headerImg" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="">
+        <img 
+        className="app__headerImg" 
+        src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" 
+        alt="">
         </img>
 
       </div>
