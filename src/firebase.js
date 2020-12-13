@@ -1,4 +1,6 @@
-const firebaseConfig = {
+import firebase from "firebase";
+
+const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyA13IdWNSB_z7IuGzBTK1cFrcTOuMejjMc",
   authDomain: "instagram-clone-react-8f859.firebaseapp.com",
   databaseURL: "https://instagram-clone-react-8f859-default-rtdb.firebaseio.com",
@@ -7,4 +9,13 @@ const firebaseConfig = {
   messagingSenderId: "844871740921",
   appId: "1:844871740921:web:e3aab7349181b00d2c2128",
   measurementId: "G-9KX37Q4EPL"
-};
+});
+
+const db = firebaseApp.firestore();
+const auth = firebase.auth();
+const storage = firebase.storage();
+
+export { db, auth, storage };
+
+
+// export default db;
