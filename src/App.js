@@ -5,6 +5,7 @@ import { db, auth } from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button, Input } from '@material-ui/core';
+import ImageUpload from './ImageUpload';
 
 function getModalStyle() {
   const top = 50;
@@ -91,10 +92,25 @@ function App() {
       })    
     })
     .catch((error) => alert(error.message));
+
+    setOpen(false);
+  }
+
+  const signIn = (event) => {
+    event.preventDefault();
+
+    auth.signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
+
+      setOpenSignIn(false);
   }
 
   return (
     <div className="app">
+      <ImageUpload>
+
+      </ImageUpload>
+
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -128,6 +144,38 @@ function App() {
             onChange={(e) => setPassword(e.target.value)}
             />        
             <Button type="submit" onClick={signUp}>Sign Up</Button>
+          </form> 
+
+        </div>
+      </Modal>
+
+      <Modal
+        open={openSignIn}
+        onClose={() => setOpenSignIn(false)}
+      >
+        <div style={modalStyle} className={classes.paper}>
+          <form className="app__signup">
+            <center>
+              <img 
+                className="app__headerImg" 
+                src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" 
+                alt=""
+              />
+            </center>
+
+            <Input
+            placeholder="email"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input
+            placeholder="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            />        
+            <Button type="submit" onClick={signIn}>Sign In</Button>
           </form> 
 
         </div>
