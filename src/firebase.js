@@ -8,7 +8,7 @@ const firebaseApp = firebase.initializeApp({
   storageBucket: "instagram-clone-react-8f859.appspot.com",
   messagingSenderId: "844871740921",
   appId: "-------",
-  measurementId: "G-9KX37Q4EPL"
+  measurementId: "-------"
 });
 
 const db = firebaseApp.firestore();
