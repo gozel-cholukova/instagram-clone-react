@@ -1,6 +1,6 @@
 This is one of my first React Projects, which is Instagram Clone.
 
-You can check the usability here: https://instagram-clone-react-8f859.web.app
+You can check the functionality here: https://instagram-clone-react-8f859.web.app
 
 Do not jugde for the photos, which I upload :)
 
